@@ -84,5 +84,5 @@ async def on_ready():
 if __name__ == '__main__':
     today = datetime.now().strftime("%d/%m/%Y %H:%M")
     CHANNEL_ID="1065393390486822952"
-    BOT_TOKEN="YOUR DISCORD BOT TOKEN"
+    BOT_TOKEN="YOUR DISCORD TOKEN"
     client.run(BOT_TOKEN)
