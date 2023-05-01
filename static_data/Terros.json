@@ -1,0 +1,43 @@
+{
+    "name": "Terros",
+    "drops": [
+        {
+            "name": "Terros's Captive Core Rumbling Ruby",
+            "id": 195502
+        },
+        {
+            "name": "Rumbling Ruby",
+            "id": 194303
+        },
+        {
+            "name": "Quake-Detecting Seismostaff",
+            "id": 195497
+        },
+        {
+            "name": "Fused Shale Waistband",
+            "id": 195501
+        },
+        {
+            "name": "Enduring Shard of Terros",
+            "id": 195503
+        },
+        {
+            "name": "Awakened Planar Pillar",
+            "id": 195504
+        },
+        {
+            "name": "Gaze of the Living Quarry",
+            "id": 195498
+        },
+        {
+            "name": "Compressed Cultist's Frock",
+            "id": 195500
+        },
+        {
+            "name": "Faultline Mantle",
+            "id": 195499
+        }
+    ]
+}
+
+

@@ -1,0 +1,41 @@
+{
+    "name": "Council",
+    "drops": [
+        {
+            "name": "Conjured Chillglobe",
+            "id": 194300
+        },
+        {
+            "name": "Councilor's Terrormask",
+            "id": 195485
+        },
+        {
+            "name": "Embar's Ashen Hauberk",
+            "id": 195487
+        },
+        {
+            "name": "Icewrath's Channeling Conduit",
+            "id": 195484
+        },
+        {
+            "name": "Imbued Qalashi Crusher",
+            "id": 195518
+        },
+        {
+            "name": "Maul of the Earthshaper",
+            "id": 195489
+        },
+        {
+            "name": "Opalfang's Earthbound Legguards",
+            "id": 195488
+        },
+        {
+            "name": "Twisted Loam Spaulders",
+            "id": 195486
+        },
+        {
+            "name": "Whispering Incarnate Icon",
+            "id": 194301
+        }
+    ]
+}

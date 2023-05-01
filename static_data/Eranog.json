@@ -1,0 +1,41 @@
+{
+    "name": "Eranog",
+    "drops": [
+        {
+            "name:": "Seal of Diurna's Chosen",
+            "id": 195480
+        },
+        {
+            "name:": "Decoration of Flame",
+            "id": 194299
+        },
+        {
+            "name:": "Decorated Commander's Cindercloak",
+            "id": 195482
+        },
+        {
+            "name:": "Searing Blazecaster",
+            "id": 195490
+        },
+        {
+            "name:": "Flame Marshal's Bulwark",
+            "id": 195475
+        },
+        {
+            "name:": "Eranog's Adorned Sallet",
+            "id": 195476
+        },
+        {
+            "name:": "Flametender's Legwraps",
+            "id": 195479
+        },
+        {
+            "name:": "Valdrakken Protector's Turncoat",
+            "id": 195478
+        },
+        {
+            "name:": "Scaldrons of Molten Might",
+            "id": 195477
+        }
+    ]
+}

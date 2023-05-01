@@ -1,0 +1,26 @@
+{
+  "boss": "name",
+  "items": [
+    {
+      "itemName": "grieftorch",
+      "DPSGain": [
+        {
+          "name": "potato",
+          "dps-raw": 2000
+        },
+        {
+          "name": "dent",
+          "dps-raw": -200
+        },
+        {},
+        {}
+      ]
+    },
+    {},
+    {},
+    {}
+  ],
+  "player": [
+    
+  ]
+}
