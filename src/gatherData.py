@@ -5,25 +5,30 @@ import pandas as pd
 import json
 import discord
 import asyncio
+from pathlib import Path
 from datetime import datetime
 
+# Set up Discord client with intents to access members
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
 
-async def download_files(channel):
+async def download_files(channel, filename_prefix):
+    """Downloads CSV files attached to messages in a Discord channel"""
+    print(channel)
     async for message in channel.history():
         if message.attachments:
             for attachment in message.attachments:
                 if attachment.filename.endswith('.csv'):
-                    filename = attachment.filename
-                    await attachment.save(f'data/{filename}')
-                    await message.delete()
+                    filename = f'{filename_prefix}_{attachment.filename}'
+                    await attachment.save(f'src/{filename_prefix}_data/{filename}')
+                    # await message.delete()
 
-def json_loader():
+def json_loader(filename_prefix):
+    """Loads data from downloaded CSV files into a list of dictionaries"""
     global players
     players = []
-    files = glob.glob('data/*.csv', recursive=True)
+    files = glob.glob(f'src/{filename_prefix}_data/*.csv', recursive=True)
     for file in files:
         player_count = 0
         with open(file, 'r') as f:
@@ -48,9 +53,10 @@ def json_loader():
             except KeyError:
                 print(f'Skipping {file}')
         player_count += 1
-    create_csv()
+    create_csv(filename_prefix)
 
-def create_csv():
+def create_csv(filename_prefix):
+    """Creates a CSV file for each boss with simmed data for each player"""
     files = glob.glob('static_data/*.json', recursive=True)
     for file in files:
         with open(file) as boss_file:
@@ -67,22 +73,32 @@ def create_csv():
                     else:
                         print("Item not in loot table")
             df = df.reset_index()
-                
         df = df.transpose()
-        df.to_csv(f"generated/{parsed_json['name']}.csv")
+        df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
         print(df)
 
 @client.event
 async def on_ready():
+    """Main event loop that downloads files, loads data and creates CSVs"""
     print('Bot is ready')
-    channel = await client.fetch_channel(CHANNEL_ID)
-    await download_files(channel)
-    json_loader()
+    channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
+    await download_files(channel, "mythic")
+    json_loader("mythic")
     await channel.send(f"Last checked: {today}")
+
     await asyncio.sleep(1)
+    
+    channel_HC = await client.fetch_channel(CHANNEL_ID_HC) # Heroic Sims
+    await download_files(channel_HC, "heroic")
+    json_loader("heroic")
+    await channel_HC.send(f"Last checked: {today}")
+    
+    await asyncio.sleep(1)
+    
 
 if __name__ == '__main__':
     today = datetime.now().strftime("%d/%m/%Y %H:%M")
-    CHANNEL_ID="1065393390486822952"
-    BOT_TOKEN="YOUR DISCORD TOKEN"
+    CHANNEL_ID=""
+    CHANNEL_ID_HC=""
+    BOT_TOKEN=""
     client.run(BOT_TOKEN)
