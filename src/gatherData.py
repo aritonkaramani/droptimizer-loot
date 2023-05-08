@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import glob
 import csv
 import numpy as np
@@ -8,10 +10,37 @@ import asyncio
 from pathlib import Path
 from datetime import datetime
 
+# Get the token and channel IDs from environment variables
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+CHANNEL_ID = os.getenv('CHANNEL_ID')
+CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC')
+
+# If any of the values is not available, use the fallback values
+if BOT_TOKEN is None:
+    BOT_TOKEN = 'YOUR_FALLBACK_BOT_TOKEN'
+if CHANNEL_ID is None:
+    CHANNEL_ID = 'YOUR_FALLBACK_CHANNEL_ID'
+if CHANNEL_ID_HC is None:
+    CHANNEL_ID_HC = 'YOUR_FALLBACK_HC_CHANNEL_ID'
+
 # Set up Discord client with intents to access members
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
+
+
+
+def parse_filename(filename):
+    """Parses the filename and extracts the name and specialization"""
+    parts = filename.split("_")
+    if len(parts) == 2:
+        name = parts[0].lower()
+        specialization = parts[1].lower().split(".")[0]
+        print(specialization)
+        print(name)
+        if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation"]:
+            return name, specialization
+    return None, None
 
 async def download_files(channel, filename_prefix):
     """Downloads CSV files attached to messages in a Discord channel"""
@@ -19,10 +48,29 @@ async def download_files(channel, filename_prefix):
     async for message in channel.history():
         if message.attachments:
             for attachment in message.attachments:
-                if attachment.filename.endswith('.csv'):
-                    filename = f'{filename_prefix}_{attachment.filename}'
-                    await attachment.save(f'src/{filename_prefix}_data/{filename}')
-                    # await message.delete()
+                filename = attachment.filename
+                if filename.endswith('.csv'):
+                    name, specialization = parse_filename(filename)
+                    if name is not None and specialization is not None:
+                        new_filename = f'{name}_{specialization}.csv'
+                        row_name = f'{name}_{specialization}'
+                        await attachment.save(f'src/{filename_prefix}_data/{new_filename}')
+                        await replace_second_row(f'src/{filename_prefix}_data/{new_filename}', row_name)
+                        await message.delete()
+                    else:
+                        user = message.author.mention
+                        await channel.send(f"{user}, the format of the filename '{filename}' is incorrect. Please use the following way of naming the file: NAME_SPECIALIZATION")
+
+async def replace_second_row(filepath, filename):
+    """Replaces the second row in the first column of a CSV file with the given filename"""
+    with open(filepath, 'r') as file:
+        data = list(csv.reader(file))
+        if len(data) > 1:
+            data[1][0] = filename
+
+    with open(filepath, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
 
 def json_loader(filename_prefix):
     """Loads data from downloaded CSV files into a list of dictionaries"""
@@ -68,14 +116,14 @@ def create_csv(filename_prefix):
             df = df.set_index('id')
             for item in player['simmed_items']:
                     if int(item['item_id']) in df.index:
-                        print("MATCH")
+                        # print("MATCH")
                         df.loc[int(item['item_id']), player['name']] = item['gain'] if item['gain'] > 0 else 0
                     else:
                         print("Item not in loot table")
             df = df.reset_index()
         df = df.transpose()
         df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
-        print(df)
+        # print(df)
 
 @client.event
 async def on_ready():
@@ -84,21 +132,16 @@ async def on_ready():
     channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
     await download_files(channel, "mythic")
     json_loader("mythic")
-    await channel.send(f"Last checked: {today}")
 
     await asyncio.sleep(1)
     
     channel_HC = await client.fetch_channel(CHANNEL_ID_HC) # Heroic Sims
     await download_files(channel_HC, "heroic")
     json_loader("heroic")
-    await channel_HC.send(f"Last checked: {today}")
     
     await asyncio.sleep(1)
     
 
 if __name__ == '__main__':
     today = datetime.now().strftime("%d/%m/%Y %H:%M")
-    CHANNEL_ID=""
-    CHANNEL_ID_HC=""
-    BOT_TOKEN=""
     client.run(BOT_TOKEN)

@@ -1,3 +1,8 @@
 /tutorial_env
 /data
 /generated
+.env
+/src/mythic_data
+/src/heroic_data
+/src/generated_mythic
+/src/generated_heroic
