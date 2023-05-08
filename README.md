@@ -21,7 +21,7 @@ This script is designed to download CSV files attached to messages in Discord ch
 
 2. Navigate to the project directory:
     ```
-    cd discord-csv-downloader
+    cd droptimizer-loot
     ```
 
 3. Create and activate a virtual environment (optional but recommended):
@@ -70,7 +70,7 @@ This script is designed to download CSV files attached to messages in Discord ch
 3. CSV file naming convention:
    - The CSV files must follow a specific naming convention: `NAME_SPECIALIZATION.csv`
    - `NAME` should be replaced with the player's name
-   - `SPECIALIZATION` should be replaced with the player's specialization, in lowercase, without spaces or special characters
+   - `SPECIALIZATION` should be replaced with the player's specialization. Important to know it has to be one of the valid specializations.
    - Valid specializations include: `blood`, `frost`, `unholy`, `havoc`, `vengeance`, `balance`, `feral`, `guardian`, `restoration`, `beastmastery`, `marksmanship`, `survival`, `arcane`, `fire`, `frost`, `brewmaster`, `mistweaver`, `windwalker`, `holy`, `protection`, `retribution`, `discipline`, `shadow`, `assassination`, `outlaw`, `subtlety`, `elemental`, `enhancement`, `restoration`, `affliction`, `demonology`, `destruction`, `arms`, `fury`, `protection`, `preservation`, `devastation`
 
 4. Uploading CSV files:

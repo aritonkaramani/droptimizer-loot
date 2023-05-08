@@ -28,8 +28,6 @@ intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
 
-
-
 def parse_filename(filename):
     """Parses the filename and extracts the name and specialization"""
     parts = filename.split("_")
