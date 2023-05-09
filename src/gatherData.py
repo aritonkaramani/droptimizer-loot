@@ -10,6 +10,8 @@ import asyncio
 from pathlib import Path
 from datetime import datetime
 
+load_dotenv('src/.env')
+
 # Get the token and channel IDs from environment variables
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL_ID')
@@ -17,11 +19,11 @@ CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC')
 
 # If any of the values is not available, use the fallback values
 if BOT_TOKEN is None:
-    BOT_TOKEN = 'YOUR_FALLBACK_BOT_TOKEN'
+    BOT_TOKEN = ''
 if CHANNEL_ID is None:
-    CHANNEL_ID = 'YOUR_FALLBACK_CHANNEL_ID'
+    CHANNEL_ID = ''
 if CHANNEL_ID_HC is None:
-    CHANNEL_ID_HC = 'YOUR_FALLBACK_HC_CHANNEL_ID'
+    CHANNEL_ID_HC = ''
 
 # Set up Discord client with intents to access members
 intents = discord.Intents.default()
@@ -34,8 +36,6 @@ def parse_filename(filename):
     if len(parts) == 2:
         name = parts[0].lower()
         specialization = parts[1].lower().split(".")[0]
-        print(specialization)
-        print(name)
         if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation"]:
             return name, specialization
     return None, None
@@ -47,6 +47,7 @@ async def download_files(channel, filename_prefix):
         if message.attachments:
             for attachment in message.attachments:
                 filename = attachment.filename
+                print(filename)
                 if filename.endswith('.csv'):
                     name, specialization = parse_filename(filename)
                     if name is not None and specialization is not None:
@@ -61,12 +62,12 @@ async def download_files(channel, filename_prefix):
 
 async def replace_second_row(filepath, filename):
     """Replaces the second row in the first column of a CSV file with the given filename"""
-    with open(filepath, 'r') as file:
+    with open(filepath, 'r', newline='', encoding='utf-8') as file:
         data = list(csv.reader(file))
         if len(data) > 1:
             data[1][0] = filename
 
-    with open(filepath, 'w', newline='') as file:
+    with open(filepath, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
 
@@ -117,7 +118,7 @@ def create_csv(filename_prefix):
                         # print("MATCH")
                         df.loc[int(item['item_id']), player['name']] = item['gain'] if item['gain'] > 0 else 0
                     else:
-                        print("Item not in loot table")
+                        print("")
             df = df.reset_index()
         df = df.transpose()
         df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
