@@ -16,6 +16,7 @@ load_dotenv('src/.env')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL_ID')
 CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC')
+CHANNEL_ID_NORMAL = os.getenv('CHANNEL_ID_NORMAL')
 
 # If any of the values is not available, use the fallback values
 if BOT_TOKEN is None:
@@ -24,6 +25,8 @@ if CHANNEL_ID is None:
     CHANNEL_ID = ''
 if CHANNEL_ID_HC is None:
     CHANNEL_ID_HC = ''
+if CHANNEL_ID_NORMAL is None:
+    CHANNEL_ID_NORMAL = ''
 
 # Set up Discord client with intents to access members
 intents = discord.Intents.default()
@@ -139,6 +142,13 @@ async def on_ready():
     json_loader("heroic")
     
     await asyncio.sleep(1)
+
+    channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
+    await download_files(channel_NORMAL, "normal")
+    json_loader("normal")
+    
+    await asyncio.sleep(1)
+
     
 
 if __name__ == '__main__':

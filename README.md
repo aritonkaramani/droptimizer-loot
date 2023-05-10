@@ -45,15 +45,18 @@ This script is designed to download CSV files attached to messages in Discord ch
    - Create a `.env` file in the root directory.
    - Define the following environment variables in the `.env` file:
      - `BOT_TOKEN`: Set it to the bot token you obtained in the previous step
-     - `CHANNEL_ID`: Set it to the channel ID where the CSV files will be downloaded from
+     - `CHANNEL_ID`: Set it to the channel ID where the mythic sims CSV files will be downloaded from
      - `CHANNEL_ID_HC`: Set it to the channel ID for heroic sims
+     - `CHANNEL_ID_NORMAL`: Set it to the channel ID for normal sims
 
 3. Prepare the file structure:
    - Create the following directories relative to the script file:
      - `src/mythic_data`
      - `src/heroic_data`
+     - `src/normal_data`
      - `src/generated_mythic`
      - `src/generated_heroic`
+     - `src/generated_normal`
    - Make sure you have write permissions for these directories
 
 ## Usage
