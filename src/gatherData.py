@@ -7,8 +7,10 @@ import pandas as pd
 import json
 import discord
 import asyncio
+import time
 from pathlib import Path
 from datetime import datetime
+
 
 load_dotenv('src/.env')
 
@@ -47,21 +49,27 @@ async def download_files(channel, filename_prefix):
     """Downloads CSV files attached to messages in a Discord channel"""
     print(channel)
     async for message in channel.history():
-        if message.attachments:
-            for attachment in message.attachments:
-                filename = attachment.filename
-                print(filename)
-                if filename.endswith('.csv'):
-                    name, specialization = parse_filename(filename)
-                    if name is not None and specialization is not None:
-                        new_filename = f'{name}_{specialization}.csv'
-                        row_name = f'{name}_{specialization}'
-                        await attachment.save(f'src/{filename_prefix}_data/{new_filename}')
-                        await replace_second_row(f'src/{filename_prefix}_data/{new_filename}', row_name)
-                        await message.delete()
-                    else:
-                        user = message.author.mention
-                        await channel.send(f"{user}, the format of the filename '{filename}' is incorrect. Please use the following way of naming the file: NAME_SPECIALIZATION")
+        try:
+            if message.attachments:
+                for attachment in message.attachments:
+                    filename = attachment.filename
+                    print(filename)
+                    if filename.endswith('.csv'):
+                        name, specialization = parse_filename(filename)
+                        if name is not None and specialization is not None:
+                            new_filename = f'{name}_{specialization}.csv'
+                            row_name = f'{name}_{specialization}'
+                            await attachment.save(f'src/{filename_prefix}_data/{new_filename}')
+                            await replace_second_row(f'src/{filename_prefix}_data/{new_filename}', row_name)
+                            await message.delete()
+                        else:
+                            user = message.author.mention
+                            await channel.send(f"{user}, the format of the filename '{filename}' is incorrect. Please use the following way of naming the file: NAME_SPECIALIZATION")
+        except discord.errors.NotFound:
+            # Handle the exception here, such as logging the error or skipping the current message
+            print(f"Error: Message not found - {message.id}")
+            print("Retrying in 10 seconds...")
+            time.sleep(10)  # Delay for 10 seconds before retrying
 
 async def replace_second_row(filepath, filename):
     """Replaces the second row in the first column of a CSV file with the given filename"""
@@ -117,11 +125,14 @@ def create_csv(filename_prefix):
             df[[player['name']]] = 0
             df = df.set_index('id')
             for item in player['simmed_items']:
-                    if int(item['item_id']) in df.index:
-                        # print("MATCH")
-                        df.loc[int(item['item_id']), player['name']] = item['gain'] if item['gain'] > 0 else 0
-                    else:
-                        print("")
+                item_id = item['item_id']
+                gain = item['gain']
+                if int(item_id) in df.index:
+                    current_gain = df.loc[int(item_id), player['name']]
+                    if gain > current_gain:
+                        df.loc[int(item_id), player['name']] = gain
+                else:
+                    print("")
             df = df.reset_index()
         df = df.transpose()
         df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
@@ -135,19 +146,19 @@ async def on_ready():
     await download_files(channel, "mythic")
     json_loader("mythic")
 
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
     
     channel_HC = await client.fetch_channel(CHANNEL_ID_HC) # Heroic Sims
     await download_files(channel_HC, "heroic")
     json_loader("heroic")
     
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
     await download_files(channel_NORMAL, "normal")
     json_loader("normal")
     
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     
 

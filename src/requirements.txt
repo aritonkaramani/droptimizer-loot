@@ -2,3 +2,5 @@ discord.py
 numpy
 pandas
 python-dotenv
+oauth2client
+gspread
