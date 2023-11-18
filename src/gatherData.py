@@ -124,28 +124,28 @@ def create_csv(filename_prefix):
                 print("")
         df = df.reset_index()
     df = df.transpose()
-    if not Path("src/data").exists():
-        os.mkdir(f"src/data")
-    df.to_csv(f"src/generated_{filename_prefix}/raidsims.csv")
+    if not Path("src/raidsims_").exists():
+        os.mkdir(f"src/raidsims_")
+    df.to_csv(f"src/raidsims/{filename_prefix}.csv")
     # print(df)
 @client.event
 async def on_ready():
     """Main event loop that downloads files, loads data and creates CSVs"""
     print('Bot is ready')
     channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
-    await download_files(channel, "mythic")
+    await download_files(channel, "Mythic")
     json_loader("mythic")
 
     await asyncio.sleep(5)
     
     channel_HC = await client.fetch_channel(CHANNEL_ID_HC) # Heroic Sims
-    await download_files(channel_HC, "heroic")
+    await download_files(channel_HC, "Heroic")
     json_loader("heroic")
     
     await asyncio.sleep(5)
 
     channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
-    await download_files(channel_NORMAL, "normal")
+    await download_files(channel_NORMAL, "Normal")
     json_loader("normal")
     
     await asyncio.sleep(5)
