@@ -109,9 +109,7 @@ def create_csv(filename_prefix):
     with open(file) as boss_file:
         file_contents = boss_file.read()
     parsed_json = json.loads(file_contents)
-    print(parsed_json)
     df = pd.DataFrame.from_records(parsed_json['drops'])
-    print(df)
     for player in players:
         df[[player['name']]] = 0
         df = df.set_index('id')
@@ -126,6 +124,8 @@ def create_csv(filename_prefix):
                 print("")
         df = df.reset_index()
     df = df.transpose()
+    if not Path("src/data").exists():
+        os.mkdir(f"src/data")
     df.to_csv(f"src/generated_{filename_prefix}/raidsims.csv")
     # print(df)
 @client.event
