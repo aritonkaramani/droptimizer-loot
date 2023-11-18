@@ -15,20 +15,10 @@ from datetime import datetime
 load_dotenv('src/.env')
 
 # Get the token and channel IDs from environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
-CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC')
-CHANNEL_ID_NORMAL = os.getenv('CHANNEL_ID_NORMAL')
-
-# If any of the values is not available, use the fallback values
-if BOT_TOKEN is None:
-    BOT_TOKEN = ''
-if CHANNEL_ID is None:
-    CHANNEL_ID = ''
-if CHANNEL_ID_HC is None:
-    CHANNEL_ID_HC = ''
-if CHANNEL_ID_NORMAL is None:
-    CHANNEL_ID_NORMAL = ''
+BOT_TOKEN = os.getenv('BOT_TOKEN', '')
+CHANNEL_ID = os.getenv('CHANNEL_ID', '')
+CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC', '')
+CHANNEL_ID_NORMAL = os.getenv('CHANNEL_ID_NORMAL', '')
 
 # Set up Discord client with intents to access members
 intents = discord.Intents.default()
@@ -41,7 +31,7 @@ def parse_filename(filename):
     if len(parts) == 2:
         name = parts[0].lower()
         specialization = parts[1].lower().split(".")[0]
-        if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation"]:
+        if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation", "augmentation"]:
             return name, specialization
     return None, None
 
@@ -115,11 +105,13 @@ def json_loader(filename_prefix):
 
 def create_csv(filename_prefix):
     """Creates a CSV file for each boss with simmed data for each player"""
-    file = glob.glob('static_data/formatted_itemdata.json', recursive=True)
+    file = 'static_data/formatted_itemdata.json'
     with open(file) as boss_file:
         file_contents = boss_file.read()
     parsed_json = json.loads(file_contents)
+    print(parsed_json)
     df = pd.DataFrame.from_records(parsed_json['drops'])
+    print(df)
     for player in players:
         df[[player['name']]] = 0
         df = df.set_index('id')
@@ -134,7 +126,7 @@ def create_csv(filename_prefix):
                 print("")
         df = df.reset_index()
     df = df.transpose()
-    df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
+    df.to_csv(f"src/generated_{filename_prefix}/raidsims.csv")
     # print(df)
 @client.event
 async def on_ready():

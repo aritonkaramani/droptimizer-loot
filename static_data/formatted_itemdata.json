@@ -1,0 +1,468 @@
+{
+    "drops": [
+        {
+            "name": "Twisting Shadow Claws",
+            "id": 207115
+        },
+        {
+            "name": "Lost Scholar's Timely Hat",
+            "id": 207116
+        },
+        {
+            "name": "Requiem Rootmantle",
+            "id": 207117
+        },
+        {
+            "name": "Elder's Volcanic Wrap",
+            "id": 207118
+        },
+        {
+            "name": "Urctos's Hibernal Dial",
+            "id": 207119
+        },
+        {
+            "name": "Anguished Restraints",
+            "id": 207120
+        },
+        {
+            "name": "Vesture of the Smoldering Serpent",
+            "id": 207121
+        },
+        {
+            "name": "Lost Scholar's Belted Treads",
+            "id": 207122
+        },
+        {
+            "name": "Lifewoven Slippers",
+            "id": 207123
+        },
+        {
+            "name": "Blooming Redeemer's Sash",
+            "id": 207124
+        },
+        {
+            "name": "Twisted Blossom Stompers",
+            "id": 207126
+        },
+        {
+            "name": "Strigine Epaulets",
+            "id": 207127
+        },
+        {
+            "name": "Primordial Serpent's Bindings",
+            "id": 207128
+        },
+        {
+            "name": "Robes of the Ashen Grove",
+            "id": 207129
+        },
+        {
+            "name": "Flamewaker's Grips",
+            "id": 207130
+        },
+        {
+            "name": "Bloody Dragonhide Belt",
+            "id": 207131
+        },
+        {
+            "name": "Frenzied Incarnate Legwraps",
+            "id": 207132
+        },
+        {
+            "name": "Silent Tormentor's Hood",
+            "id": 207133
+        },
+        {
+            "name": "Tasseted Emberwalkers",
+            "id": 207134
+        },
+        {
+            "name": "Eternal Sentinel's Cord",
+            "id": 207135
+        },
+        {
+            "name": "Flameseer's Winged Grasps",
+            "id": 207137
+        },
+        {
+            "name": "Aerwynn's Ritual Sarong",
+            "id": 207138
+        },
+        {
+            "name": "Cleats of the Savage Claw",
+            "id": 207139
+        },
+        {
+            "name": "Drakestalker's Trophy Pauldrons",
+            "id": 207140
+        },
+        {
+            "name": "Snake Eater's Cowl",
+            "id": 207141
+        },
+        {
+            "name": "Ancient Haubark",
+            "id": 207142
+        },
+        {
+            "name": "Twisted Flamecuffs",
+            "id": 207143
+        },
+        {
+            "name": "Forlorn Leaf Clasp",
+            "id": 207144
+        },
+        {
+            "name": "Boots of the Molten Hoard",
+            "id": 207145
+        },
+        {
+            "name": "Jeweled Sash of the Viper",
+            "id": 207146
+        },
+        {
+            "name": "Lavaforged Sollerets",
+            "id": 207148
+        },
+        {
+            "name": "Phlegethic Girdle",
+            "id": 207149
+        },
+        {
+            "name": "Agonizing Manacles",
+            "id": 207150
+        },
+        {
+            "name": "Emerald Guardian's Casque",
+            "id": 207151
+        },
+        {
+            "name": "Volcanic Spelunker's Vents",
+            "id": 207152
+        },
+        {
+            "name": "Seared Ironwood Greaves",
+            "id": 207153
+        },
+        {
+            "name": "Carapace of the Unbending Flame",
+            "id": 207154
+        },
+        {
+            "name": "Eldermoss Gauntlets",
+            "id": 207155
+        },
+        {
+            "name": "Fused Obsidian Sabatons",
+            "id": 207156
+        },
+        {
+            "name": "Smoldering Chevalier's Greatbelt",
+            "id": 207157
+        },
+        {
+            "name": "Band of Burning Thorns",
+            "id": 207159
+        },
+        {
+            "name": "Inflammable Drapeleaf",
+            "id": 207160
+        },
+        {
+            "name": "Mantle of Blazing Sacrifice",
+            "id": 207161
+        },
+        {
+            "name": "Signet of the Last Elder",
+            "id": 207162
+        },
+        {
+            "name": "Eye of the Rising Flame",
+            "id": 207163
+        },
+        {
+            "name": "Bandolier of Twisted Blades",
+            "id": 207165
+        },
+        {
+            "name": "Cataclysmic Signet Brand",
+            "id": 207166
+        },
+        {
+            "name": "Ashes of the Embersoul",
+            "id": 207167
+        },
+        {
+            "name": "Pip's Emerald Friendship Badge",
+            "id": 207168
+        },
+        {
+            "name": "Branch of the Tormented Ancient",
+            "id": 207169
+        },
+        {
+            "name": "Smoldering Seedling",
+            "id": 207170
+        },
+        {
+            "name": "Blossom of Amirdrassil",
+            "id": 207171
+        },
+        {
+            "name": "Belor'relos, the Suncaller",
+            "id": 207172
+        },
+        {
+            "name": "Gift of Ursine Vengeance",
+            "id": 207173
+        },
+        {
+            "name": "Fyrakk's Tainted Rageheart",
+            "id": 207174
+        },
+        {
+            "name": "Coiled Serpent Idol",
+            "id": 207175
+        },
+        {
+            "name": "Dreadful Verdurous Dreamheart",
+            "id": 207462
+        },
+        {
+            "name": "Mystic Verdurous Dreamheart",
+            "id": 207463
+        },
+        {
+            "name": "Venerated Verdurous Dreamheart",
+            "id": 207464
+        },
+        {
+            "name": "Zenith Verdurous Dreamheart",
+            "id": 207465
+        },
+        {
+            "name": "Dreadful Tormented Dreamheart",
+            "id": 207466
+        },
+        {
+            "name": "Mystic Tormented Dreamheart",
+            "id": 207467
+        },
+        {
+            "name": "Venerated Tormented Dreamheart",
+            "id": 207468
+        },
+        {
+            "name": "Zenith Tormented Dreamheart",
+            "id": 207469
+        },
+        {
+            "name": "Dreadful Blazing Dreamheart",
+            "id": 207470
+        },
+        {
+            "name": "Mystic Blazing Dreamheart",
+            "id": 207471
+        },
+        {
+            "name": "Venerated Blazing Dreamheart",
+            "id": 207472
+        },
+        {
+            "name": "Zenith Blazing Dreamheart",
+            "id": 207473
+        },
+        {
+            "name": "Dreadful Ashen Dreamheart",
+            "id": 207474
+        },
+        {
+            "name": "Mystic Ashen Dreamheart",
+            "id": 207475
+        },
+        {
+            "name": "Venerated Ashen Dreamheart",
+            "id": 207476
+        },
+        {
+            "name": "Zenith Ashen Dreamheart",
+            "id": 207477
+        },
+        {
+            "name": "Dreadful Smoldering Dreamheart",
+            "id": 207478
+        },
+        {
+            "name": "Mystic Smoldering Dreamheart",
+            "id": 207479
+        },
+        {
+            "name": "Venerated Smoldering Dreamheart",
+            "id": 207480
+        },
+        {
+            "name": "Zenith Smoldering Dreamheart",
+            "id": 207481
+        },
+        {
+            "name": "Ashen Ranger's Longbow",
+            "id": 207780
+        },
+        {
+            "name": "Betrayer's Cinderblade",
+            "id": 207781
+        },
+        {
+            "name": "Sickle of the White Stag",
+            "id": 207782
+        },
+        {
+            "name": "Cruel Dreamcarver",
+            "id": 207783
+        },
+        {
+            "name": "Thorncaller Claw",
+            "id": 207784
+        },
+        {
+            "name": "Magmatic Volcannon",
+            "id": 207785
+        },
+        {
+            "name": "Gholak, the Final Conflagration",
+            "id": 207786
+        },
+        {
+            "name": "Igira's Flaying Hatchet",
+            "id": 207787
+        },
+        {
+            "name": "Vakash, the Shadowed Inferno",
+            "id": 207788
+        },
+        {
+            "name": "Volcoross's Barbed Fang",
+            "id": 207789
+        },
+        {
+            "name": "Larodar's Moonblade",
+            "id": 207790
+        },
+        {
+            "name": "Remnant Charglaive",
+            "id": 207791
+        },
+        {
+            "name": "Scythe of the Fallen Keeper",
+            "id": 207792
+        },
+        {
+            "name": "Rashon, the Immortal Blaze",
+            "id": 207793
+        },
+        {
+            "name": "Staff of Incandescent Torment",
+            "id": 207794
+        },
+        {
+            "name": "Eternal Kindler's Greatstaff",
+            "id": 207795
+        },
+        {
+            "name": "Trickster's Captivating Chime",
+            "id": 207796
+        },
+        {
+            "name": "Defender of the Ancient",
+            "id": 207797
+        },
+        {
+            "name": "Verdant Matrix Beacon",
+            "id": 207798
+        },
+        {
+            "name": "Incandescent Soulcleaver",
+            "id": 207799
+        },
+        {
+            "name": "Gnarlroot's Bonecrusher",
+            "id": 207800
+        },
+        {
+            "name": "Visage of the Devouring Flame",
+            "id": 208420
+        },
+        {
+            "name": "Mask of the Unbidden Grim",
+            "id": 208426
+        },
+        {
+            "name": "Insurgent Flame Warboots",
+            "id": 208427
+        },
+        {
+            "name": "Mantle of Slumbering Sands",
+            "id": 208428
+        },
+        {
+            "name": "Whispering Fanged Cord",
+            "id": 208430
+        },
+        {
+            "name": "Lost Scholar's Temporal Shoulderdials",
+            "id": 208431
+        },
+        {
+            "name": "Vengeful Bladebeak Girdle",
+            "id": 208432
+        },
+        {
+            "name": "Sentinel's Gilded Poulaines",
+            "id": 208434
+        },
+        {
+            "name": "Daydreamer's Glimmering Ring",
+            "id": 208442
+        },
+        {
+            "name": "Amulet of Eonar's Chosen",
+            "id": 208445
+        },
+        {
+            "name": "Augury of the Primal Flame",
+            "id": 208614
+        },
+        {
+            "name": "Nymue's Unraveling Spindle",
+            "id": 208615
+        },
+        {
+            "name": "Dreambinder, Loom of the Great Cycle",
+            "id": 208616
+        },
+        {
+            "name": "Wellspring Wristlets",
+            "id": 210203
+        },
+        {
+            "name": "Fading Flame Wristbands",
+            "id": 210204
+        },
+        {
+            "name": "Vigilant Protector's Bracers",
+            "id": 210205
+        },
+        {
+            "name": "Verdant Sanctuary Bands",
+            "id": 210206
+        },
+        {
+            "name": "Ouroboreal Necklet",
+            "id": 210214
+        },
+        {
+            "name": "Flame-Warped Curio",
+            "id": 210947
+        }
+    ]
+}
