@@ -115,29 +115,27 @@ def json_loader(filename_prefix):
 
 def create_csv(filename_prefix):
     """Creates a CSV file for each boss with simmed data for each player"""
-    files = glob.glob('static_data/*.json', recursive=True)
-    for file in files:
-        with open(file) as boss_file:
-            file_contents = boss_file.read()
-        parsed_json = json.loads(file_contents)
-        df = pd.DataFrame.from_records(parsed_json['drops'])
-        for player in players:
-            df[[player['name']]] = 0
-            df = df.set_index('id')
-            for item in player['simmed_items']:
-                item_id = item['item_id']
-                gain = item['gain']
-                if int(item_id) in df.index:
-                    current_gain = df.loc[int(item_id), player['name']]
-                    if gain > current_gain:
-                        df.loc[int(item_id), player['name']] = gain
-                else:
-                    print("")
-            df = df.reset_index()
-        df = df.transpose()
-        df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
-        # print(df)
-
+    file = glob.glob('static_data/formatted_itemdata.json', recursive=True)
+    with open(file) as boss_file:
+        file_contents = boss_file.read()
+    parsed_json = json.loads(file_contents)
+    df = pd.DataFrame.from_records(parsed_json['drops'])
+    for player in players:
+        df[[player['name']]] = 0
+        df = df.set_index('id')
+        for item in player['simmed_items']:
+            item_id = item['item_id']
+            gain = item['gain']
+            if int(item_id) in df.index:
+                current_gain = df.loc[int(item_id), player['name']]
+                if gain > current_gain:
+                    df.loc[int(item_id), player['name']] = gain
+            else:
+                print("")
+        df = df.reset_index()
+    df = df.transpose()
+    df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
+    # print(df)
 @client.event
 async def on_ready():
     """Main event loop that downloads files, loads data and creates CSVs"""

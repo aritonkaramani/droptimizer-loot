@@ -36,35 +36,24 @@ valid_encounter_ids = set(entry["id"] for entry in zone_data["encounters"])
 # Create a dictionary to map encounterId to zone names
 zone_mapping = {entry["id"]: entry["name"] for entry in zone_data["encounters"]}
 
-# Create a dictionary to group data by encounterId
-encounter_data = {}
+# Create a dictionary to group data by encounter name
+encounter_data = { "drops": [] }
+
 
 for item in json_data:
     sources_data = item.get("sources", [{}])[0]
     encounter_id = sources_data.get("encounterId", None)
-
     if encounter_id is not None and encounter_id in valid_encounter_ids:
         formatted_item = {
             "name": item.get("name", None),
             "id": item.get("id", None),
         }
+        if encounter_id is not None:
+            encounter_data["drops"].append(formatted_item)
 
-        if encounter_id in encounter_data:
-            encounter_data[encounter_id]["drops"].append(formatted_item)
-        else:
-            encounter_data[encounter_id] = {
-                "name": encounter_id,
-                "drops": [formatted_item]
-            }
+# Write the grouped data to a single JSON file
+output_file_path = os.path.join(output_folder, "formatted_itemdata.json")
+with open(output_file_path, "w") as output_file:
+    json.dump(encounter_data, output_file, indent=4)
 
-# Replace encounterId with encounter names in the output
-for encounter_id, data in encounter_data.items():
-    encounter_name = zone_mapping.get(encounter_id, None)
-    if encounter_name is not None:
-        data["name"] = encounter_name
-    output_file_name = f"{encounter_name}.json" if encounter_name else f"{encounter_id}.json"
-    output_file_path = os.path.join(output_folder, output_file_name)
-    with open(output_file_path, "w") as output_file:
-        json.dump(data, output_file, indent=4)
-
-print("Data split into multiple files with corresponding names.")
+print(f"Data written to {output_file_path}")
