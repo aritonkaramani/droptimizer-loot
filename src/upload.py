@@ -50,7 +50,7 @@ def directoryFinder(dir):
             ImportCsv(f, spreadsheet, tabname)
 
 if __name__ == '__main__':
-    directoryFinder('src/data')
+    directoryFinder('src/raidsims')
 
 
 
