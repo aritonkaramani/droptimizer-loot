@@ -15,20 +15,10 @@ from datetime import datetime
 load_dotenv('src/.env')
 
 # Get the token and channel IDs from environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
-CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC')
-CHANNEL_ID_NORMAL = os.getenv('CHANNEL_ID_NORMAL')
-
-# If any of the values is not available, use the fallback values
-if BOT_TOKEN is None:
-    BOT_TOKEN = ''
-if CHANNEL_ID is None:
-    CHANNEL_ID = ''
-if CHANNEL_ID_HC is None:
-    CHANNEL_ID_HC = ''
-if CHANNEL_ID_NORMAL is None:
-    CHANNEL_ID_NORMAL = ''
+BOT_TOKEN = os.getenv('BOT_TOKEN', '')
+CHANNEL_ID = os.getenv('CHANNEL_ID', '')
+CHANNEL_ID_HC = os.getenv('CHANNEL_ID_HC', '')
+CHANNEL_ID_NORMAL = os.getenv('CHANNEL_ID_NORMAL', '')
 
 # Set up Discord client with intents to access members
 intents = discord.Intents.default()
@@ -41,7 +31,7 @@ def parse_filename(filename):
     if len(parts) == 2:
         name = parts[0].lower()
         specialization = parts[1].lower().split(".")[0]
-        if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation"]:
+        if specialization in ["blood", "frost", "unholy", "havoc", "vengeance", "balance", "feral", "guardian", "restoration", "beastmastery", "marksmanship", "survival", "arcane", "fire", "frost", "brewmaster", "mistweaver", "windwalker", "holy", "protection", "retribution", "discipline", "shadow", "assassination", "outlaw", "subtlety", "elemental", "enhancement", "restoration", "affliction", "demonology", "destruction", "arms", "fury", "protection", "preservation", "devastation", "augmentation"]:
             return name, specialization
     return None, None
 
@@ -115,47 +105,47 @@ def json_loader(filename_prefix):
 
 def create_csv(filename_prefix):
     """Creates a CSV file for each boss with simmed data for each player"""
-    files = glob.glob('static_data/*.json', recursive=True)
-    for file in files:
-        with open(file) as boss_file:
-            file_contents = boss_file.read()
-        parsed_json = json.loads(file_contents)
-        df = pd.DataFrame.from_records(parsed_json['drops'])
-        for player in players:
-            df[[player['name']]] = 0
-            df = df.set_index('id')
-            for item in player['simmed_items']:
-                item_id = item['item_id']
-                gain = item['gain']
-                if int(item_id) in df.index:
-                    current_gain = df.loc[int(item_id), player['name']]
-                    if gain > current_gain:
-                        df.loc[int(item_id), player['name']] = gain
-                else:
-                    print("")
-            df = df.reset_index()
-        df = df.transpose()
-        df.to_csv(f"src/generated_{filename_prefix}/{parsed_json['name']}.csv")
-        # print(df)
-
+    file = 'static_data/formatted_itemdata.json'
+    with open(file) as boss_file:
+        file_contents = boss_file.read()
+    parsed_json = json.loads(file_contents)
+    df = pd.DataFrame.from_records(parsed_json['drops'])
+    for player in players:
+        df[[player['name']]] = 0
+        df = df.set_index('id')
+        for item in player['simmed_items']:
+            item_id = item['item_id']
+            gain = item['gain']
+            if int(item_id) in df.index:
+                current_gain = df.loc[int(item_id), player['name']]
+                if gain > current_gain:
+                    df.loc[int(item_id), player['name']] = gain
+            else:
+                print("")
+        df = df.reset_index()
+    df = df.transpose()
+    if not Path("src/raidsims_").exists():
+        os.mkdir(f"src/raidsims_")
+    df.to_csv(f"src/raidsims/{filename_prefix}.csv")
+    # print(df)
 @client.event
 async def on_ready():
     """Main event loop that downloads files, loads data and creates CSVs"""
     print('Bot is ready')
     channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
-    await download_files(channel, "mythic")
+    await download_files(channel, "Mythic")
     json_loader("mythic")
 
     await asyncio.sleep(5)
     
     channel_HC = await client.fetch_channel(CHANNEL_ID_HC) # Heroic Sims
-    await download_files(channel_HC, "heroic")
+    await download_files(channel_HC, "Heroic")
     json_loader("heroic")
     
     await asyncio.sleep(5)
 
     channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
-    await download_files(channel_NORMAL, "normal")
+    await download_files(channel_NORMAL, "Normal")
     json_loader("normal")
     
     await asyncio.sleep(5)

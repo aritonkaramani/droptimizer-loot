@@ -1,0 +1,77 @@
+{
+  "id": 1273,
+  "name": "Nerub-ar Palace",
+  "description": "Deep within the kingdom of Azj-Kahet lies Nerub-ar Palace, Queen Ansurek's seat of power. From this shadowed throne Queen Ansurek has tightened her grip on her Sureki followers, leading them along a dark path to a new future. As her paranoia grows, the members of the conspiratorial Severed Threads launch their final gambit against Ansurek's rule.",
+  "image_button": "ui-ej-dungeonbutton-nerubarpalace",
+  "image_button_small": "lfgicon-nerubarpalance",
+  "image_background": "ui-ej-background-nerubarpalace",
+  "flags": 0,
+  "type_id": 2,
+  "type": "raid",
+  "encounters": [
+    {
+      "id": 2607,
+      "name": "Ulgrax the Devourer",
+      "icon": "ui-ej-boss-ulgrax",
+      "order": 1,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2611,
+      "name": "The Bloodbound Horror",
+      "icon": "ui-ej-boss-the_bloodbound_horror",
+      "order": 2,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2599,
+      "name": "Sikran, Captain of the Sureki",
+      "icon": "ui-ej-boss-sikran",
+      "order": 3,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2609,
+      "name": "Rasha'nan",
+      "icon": "ui-ej-boss-rashanan",
+      "order": 4,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2612,
+      "name": "Broodtwister Ovi'nax",
+      "icon": "ui-ej-boss-broodtwister_ovinax",
+      "order": 5,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2601,
+      "name": "Nexus-Princess Ky'veza",
+      "icon": "ui-ej-boss-kyveza",
+      "order": 6,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2608,
+      "name": "The Silken Court",
+      "icon": "ui-ej-boss-the_silken_court",
+      "order": 7,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2602,
+      "name": "Queen Ansurek",
+      "icon": "ui-ej-boss-queen_ansurek",
+      "order": 8,
+      "flags": 0,
+      "difficulty_mask": 255
+    }
+  ]
+}

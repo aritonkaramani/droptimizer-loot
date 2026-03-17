@@ -58,6 +58,12 @@ This script is designed to download CSV files attached to messages in Discord ch
      - `src/generated_heroic`
      - `src/generated_normal`
    - Make sure you have write permissions for these directories
+  
+4. Extract item data from Raidbots
+   - Extract the following json files into `src/static_data`
+      - https://www.raidbots.com/static/data/live/equippable-items.json
+      - https://www.raidbots.com/static/data/live/instances.json
+   - In instances.json, delete all data execept the raid tier you want loot extracted from.
 
 ## Usage
 
@@ -65,7 +71,8 @@ This script is designed to download CSV files attached to messages in Discord ch
    - Open a command prompt or terminal
    - Navigate to the directory containing the script file
    - Run the script using the command `python gatherData.py`
-
+   - Next run the loot extrating script, using the command `python gatherData.py`
+  
 2. Discord bot setup:
    - Make sure the Discord bot is invited to the channels where the CSV files are located
    - Ensure the bot has appropriate permissions to read messages, download attachments, and send messages
@@ -93,7 +100,7 @@ If you encounter any issues or have any questions, please feel free to reach out
 
 ## Acknowledgements
 
-This script was developed by Ari. Special thanks to the following resources:
+This script was developed by Ari and NAskjaer. Special thanks to the following resources:
 
 - Discord.py documentation: [https://discordpy.readthedocs.io](https://discordpy.readthedocs.io)
 - Numpy documentation: [https://numpy.org/doc](https://numpy.org/doc)
