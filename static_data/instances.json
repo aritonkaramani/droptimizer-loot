@@ -1,0 +1,90 @@
+{
+  "id": 1207,
+  "name": "Amirdrassil, the Dream's Hope",
+  "description": "Having been carefully nurtured within the Emerald Dream, Amirdrassil is preparing to bloom and cross into Azeroth. But the fate of the new world tree cannot be secured until Azeroth's champions come together to face Fyrakk and his molten allies, before he devours the heart of Amirdrassil and bathes the world in flame.",
+  "image_button": "ui-ej-dungeonbutton-emeralddream",
+  "image_button_small": "lfgicon-emeralddream",
+  "image_background": "ui-ej-background-emeralddream",
+  "flags": 0,
+  "type_id": 2,
+  "type": "raid",
+  "encounters": [
+    {
+      "id": 2564,
+      "name": "Gnarlroot",
+      "icon": "ui-ej-boss-gnarlroot",
+      "order": 1,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2554,
+      "name": "Igira the Cruel",
+      "icon": "ui-ej-boss-igira_the_cruel",
+      "order": 2,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2557,
+      "name": "Volcoross",
+      "icon": "ui-ej-boss-volcoross",
+      "order": 3,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2555,
+      "name": "Council of Dreams",
+      "icon": "ui-ej-boss-council_of_dreams",
+      "order": 4,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2553,
+      "name": "Larodar, Keeper of the Flame",
+      "icon": "ui-ej-boss-larodar_keeper_of_the_flame",
+      "order": 5,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2556,
+      "name": "Nymue, Weaver of the Cycle",
+      "icon": "ui-ej-boss-nymue_weaver_of_the_cycle",
+      "order": 6,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2563,
+      "name": "Smolderon",
+      "icon": "ui-ej-boss-smolderon",
+      "order": 7,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": 2565,
+      "name": "Tindral Sageswift, Seer of the Flame",
+      "icon": "ui-ej-boss-tindral_sageswift_seer_of_flame",
+      "order": 8,
+      "flags": 0,
+      "difficulty_mask": 0
+    },
+    {
+      "id": 2519,
+      "name": "Fyrakk the Blazing",
+      "icon": "ui-ej-boss-fyrakk_the_burning",
+      "order": 9,
+      "flags": 0,
+      "difficulty_mask": 255
+    },
+    {
+      "id": -54,
+      "name": "Trash Drop",
+      "order": 99
+    }
+  ]
+}

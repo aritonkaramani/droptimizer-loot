@@ -9,3 +9,7 @@
 /src/generated_normal
 /src/normal_data
 /src/client_secret.json
+/static_data/catalyst_items.json
+/static_data/encounter-items.json
+/static_data/formatted_itemdata.json
+/static_data/instances.json
