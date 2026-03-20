@@ -73,4 +73,4 @@ python src/upload.py
 
 ## Support
 
-Reach out to Ari on Discord.
+Reach out to Ari03024 on Discord.
