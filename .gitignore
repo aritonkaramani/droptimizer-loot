@@ -1,4 +1,4 @@
-/venv
+/myenv
 /data
 /generated
 .env
@@ -8,8 +8,17 @@
 /src/generated_heroic
 /src/generated_normal
 /src/normal_data
+/src/raidsims
 /src/client_secret.json
+/static_data
 /static_data/catalyst_items.json
 /static_data/encounter-items.json
 /static_data/formatted_itemdata.json
-/static_data/instances.json
+/static_data/instances.json/src/raidsims/
+
+# Python
+**/__pycache__/
+*.pyc
+
+# macOS
+**/.DS_Store

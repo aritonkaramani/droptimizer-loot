@@ -56,10 +56,9 @@ async def download_files(channel, filename_prefix):
                             user = message.author.mention
                             await channel.send(f"{user}, the format of the filename '{filename}' is incorrect. Please use the following way of naming the file: NAME_SPECIALIZATION")
         except discord.errors.NotFound:
-            # Handle the exception here, such as logging the error or skipping the current message
             print(f"Error: Message not found - {message.id}")
             print("Retrying in 10 seconds...")
-            time.sleep(10)  # Delay for 10 seconds before retrying
+            time.sleep(10)
 
 async def replace_second_row(filepath, filename):
     """Replaces the second row in the first column of a CSV file with the given filename"""
@@ -94,10 +93,14 @@ def json_loader(filename_prefix):
                         line_count += 1
                     else:
                         line_count += 1
-                        players[player_count]['simmed_items'].append(dict({
-                            'item_id': row['name'].split("/", 3)[-1].split("/",1)[-2],
-                            'gain': -np.round(float(players[player_count]['sim_dps']) - float(row['dps_mean'])),
-                        }))
+                        parts = row['name'].split("/")
+                        if len(parts) > 3:
+                            players[player_count]['simmed_items'].append(dict({
+                                'item_id': parts[3],
+                                'gain': -np.round(float(players[player_count]['sim_dps']) - float(row['dps_mean'])),
+                            }))
+                        else:
+                            print(f"Skipping malformed row: {row['name']}")
             except KeyError:
                 print(f'Skipping {file}')
         player_count += 1
@@ -124,17 +127,17 @@ def create_csv(filename_prefix):
                 print("")
         df = df.reset_index()
     df = df.transpose()
-    if not Path("src/raidsims_").exists():
-        os.mkdir(f"src/raidsims_")
+    if not Path("src/raidsims").exists():
+        os.mkdir("src/raidsims")
     df.to_csv(f"src/raidsims/{filename_prefix}.csv")
-    # print(df)
+
 @client.event
 async def on_ready():
     """Main event loop that downloads files, loads data and creates CSVs"""
     print('Bot is ready')
-    channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
-    await download_files(channel, "Mythic")
-    json_loader("mythic")
+    # channel = await client.fetch_channel(CHANNEL_ID) # Mythic Sims
+    # await download_files(channel, "Mythic")
+    # json_loader("mythic")
 
     await asyncio.sleep(5)
     
@@ -144,14 +147,15 @@ async def on_ready():
     
     await asyncio.sleep(5)
 
-    channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
-    await download_files(channel_NORMAL, "Normal")
-    json_loader("normal")
+    # channel_NORMAL = await client.fetch_channel(CHANNEL_ID_NORMAL) # Heroic Sims
+    # await download_files(channel_NORMAL, "Normal")
+    # json_loader("normal")
     
-    await asyncio.sleep(5)
-
-    
+    # await asyncio.sleep(5)
 
 if __name__ == '__main__':
+    if not BOT_TOKEN:
+        print("Error: BOT_TOKEN is not set. Check your src/.env file.")
+        exit(1)
     today = datetime.now().strftime("%d/%m/%Y %H:%M")
     client.run(BOT_TOKEN)
